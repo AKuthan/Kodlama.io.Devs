@@ -24,9 +24,14 @@ namespace Application.Features.ProgramingLanguages.Rules
             IPaginate<ProgramingLanguage> result = await _programingLanguageRepository.GetListAsync(b => b.Name == name);
             if (result.Items.Any()) throw new BusinessException("Programing language name exists.");
         }
-        public void ProgramingLanguageShouldExistWhenRequested(ProgramingLanguage brand)
+        public void ProgramingLanguageShouldExistWhenRequested(ProgramingLanguage programingLanguage)
         {
-            if (brand == null) throw new BusinessException("Requested programing language does not exist");
+            if (programingLanguage == null) throw new BusinessException("Requested programing language does not exist");
+        }
+        public async Task ProgramingLanguageNameShouldExistWhenDeleted(string name)
+        {
+            IPaginate<ProgramingLanguage> result = await _programingLanguageRepository.GetListAsync(b => b.Name == name);
+            if (!result.Items.Any()) throw new BusinessException("Programing language name does not exists.");
         }
     }
 }

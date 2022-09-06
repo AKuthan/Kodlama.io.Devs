@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.ProgramingLanguages.Dtos
 {
-    public class CreatedProgramingLanguageDto
+    public class DeletedProgramingLanguageDto
     {
         public int Id { get; set; }
 

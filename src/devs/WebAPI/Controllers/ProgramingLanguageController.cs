@@ -12,7 +12,7 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BrandController : BaseController
+    public class ProgramingLanguageController : BaseController
     {
         [HttpPost]
         public async Task<ActionResult> Add([FromBody] CreateProgramingLanguageCommand createProgramingLanguageCommand)
@@ -33,6 +33,12 @@ namespace WebAPI.Controllers
         public async Task<ActionResult> GetById([FromRoute] GetByIdProgramingLanguageQuery getByIdProgramingLanguageQuery)
         {
             ProgramingLanguageGetByIdDto result = await Mediator.Send(getByIdProgramingLanguageQuery);
+            return Ok(result);
+        }
+        [HttpDelete]
+        public async Task<ActionResult> Delete([FromBody] DeleteProgramingLanguageCommand deleteProgramingLanguageCommand)
+        {
+            DeletedProgramingLanguageDto result = await Mediator.Send(deleteProgramingLanguageCommand);
             return Ok(result);
         }
     }
