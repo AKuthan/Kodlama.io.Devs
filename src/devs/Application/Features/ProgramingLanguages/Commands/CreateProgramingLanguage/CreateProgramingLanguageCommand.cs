@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.ProgramingLanguages.Commands
+namespace Application.Features.ProgramingLanguages.Commands.CreateProgramingLanguage
 {
     public class CreateProgramingLanguageCommand : IRequest<CreatedProgramingLanguageDto>
     {

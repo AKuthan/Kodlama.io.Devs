@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.ProgramingLanguages.Commands
+namespace Application.Features.ProgramingLanguages.Commands.DeleteProgramingLangugae
 {
     public class DeleteProgramingLanguageCommand : IRequest<DeletedProgramingLanguageDto>
     {
@@ -20,18 +20,15 @@ namespace Application.Features.ProgramingLanguages.Commands
         {
             private readonly IProgramingLanguageRepository _programingLanguageRepository;
             private readonly IMapper _mapper;
-            private readonly ProgramingLanguageBusinessRules _programingLanguageBusinessRules;
 
-            public DeleteProgramingLanguageCommandHandler(IProgramingLanguageRepository programingLanguageRepository, IMapper mapper, ProgramingLanguageBusinessRules programingLanguageBusinessRules)
+            public DeleteProgramingLanguageCommandHandler(IProgramingLanguageRepository programingLanguageRepository, IMapper mapper)
             {
                 _programingLanguageRepository = programingLanguageRepository;
                 _mapper = mapper;
-                _programingLanguageBusinessRules = programingLanguageBusinessRules;
             }
 
             public async Task<DeletedProgramingLanguageDto> Handle(DeleteProgramingLanguageCommand request, CancellationToken cancellationToken)
             {
-                await _programingLanguageBusinessRules.ProgramingLanguageNameShouldExistWhenDeleted(request.Name);
 
                 ProgramingLanguage? programingLanguage = await _programingLanguageRepository.GetAsync(b => b.Name == request.Name);
                 ProgramingLanguage DeletedProgramingLanguage = await _programingLanguageRepository.DeleteAsync(programingLanguage);
