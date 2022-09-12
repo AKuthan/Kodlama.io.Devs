@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.Contexts;
+using Persistence.Repositories;
 
 namespace Persistence
 {
@@ -15,7 +16,10 @@ namespace Persistence
             services.AddDbContext<BaseDbContext>(options =>
                                                      options.UseSqlServer(
                                                          configuration.GetConnectionString("DevCampConnectionString")));
+
             services.AddScoped<IProgramingLanguageRepository, ProgramingLanguageRepository>();
+            services.AddScoped<ITechnologyRepository, TechnologyRepository>();
+
 
             return services;
         }
